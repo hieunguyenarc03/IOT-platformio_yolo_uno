@@ -1,11 +1,37 @@
 #include <Arduino.h>
+#include <dht11.h>
+
+void printDHT11Data(void *pvParameters)
+{
+  while (true)
+  {
+    readDHT11();
+
+    Serial.print("Humidity: ");
+    Serial.println(data.humidity);
+
+    Serial.print("Temperature: ");
+    Serial.println(data.temperature);
+
+    vTaskDelay(2000 / portTICK_PERIOD_MS);
+  }
+}
 
 void setup()
 {
-  Serial.begin(9600);
+  Serial.begin(115200);
+  initDHT11();
+
+  xTaskCreate(
+      printDHT11Data,       // Function to execute
+      "PrintDHT11DataTask", // Task name (for debugging)
+      2048,                 // Stack size in bytes (adjust if needed)
+      nullptr,              // Task parameters (none in this case)
+      1,                    // Task priority (1 is low, higher numbers are higher priority)
+      nullptr               // Task handle (not used here)
+  );
 }
 void loop()
 {
-  Serial.println("Hello World");
-  delay(1000);
+  // Empty because we are using FreeRTOS
 }
