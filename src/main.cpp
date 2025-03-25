@@ -7,11 +7,14 @@ void printDHT11Data(void *pvParameters)
   {
     readDHT11();
 
-    Serial.print("Humidity: ");
-    Serial.println(data.humidity);
-
     Serial.print("Temperature: ");
-    Serial.println(data.temperature);
+    Serial.print(data.temperature);
+    Serial.println(" *C");
+
+    Serial.print("Humidity: ");
+    Serial.print(data.humidity);
+    Serial.println(" %");
+    Serial.println();
 
     vTaskDelay(2000 / portTICK_PERIOD_MS);
   }

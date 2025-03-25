@@ -17,7 +17,7 @@ void readDHT11()
 {
     data.temperature = dht.readTemperature();
     data.humidity = dht.readHumidity();
-    if (data.temperature || data.humidity)
+    if (isnan(data.temperature) || isnan(data.humidity))
     {
         Serial.println(F("Failed to read from DHT sensor!"));
         return;
