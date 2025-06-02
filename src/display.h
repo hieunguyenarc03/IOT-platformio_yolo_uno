@@ -17,12 +17,12 @@ public:
 class DisplayLCD : public Display
 {
 private:
-    static constexpr uint16_t LCD_I2C_ADDRESS = 0x21;
+    static constexpr uint16_t I2C_ADDRESS = 0x21;
 
     LiquidCrystal_I2C lcd;
 
 public:
-    DisplayLCD() : lcd(LCD_I2C_ADDRESS, 16, 2) {};
+    DisplayLCD() : lcd(I2C_ADDRESS, 16, 2) {};
     ~DisplayLCD() override = default;
 
     void initialize(void) override;

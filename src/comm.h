@@ -1,30 +1,21 @@
-#ifndef SRC_COMM_I2C_H_
-#define SRC_COMM_I2C_H_
+#ifndef SRC_COMM_H_
+#define SRC_COMM_H_
 
 #include "global.h"
 
-class Comm
-{
-public:
-    virtual ~Comm() = default;
-
-    virtual enum StatusCode initialize() = 0;
-};
-
-class CommI2C : public Comm
+class CommI2C
 {
 private:
-    static constexpr uint32_t I2C_FREQUENCY = 400000U;
+    const uint32_t FREQUENCY;
 
-    const int I2C_SDA_PIN;
-    const int I2C_SCL_PIN;
+    const uint8_t SDA_PIN;
+    const uint8_t SCL_PIN;
 
 public:
-    CommI2C(const int sda_pin, const int scl_pin) : I2C_SDA_PIN(sda_pin), I2C_SCL_PIN(scl_pin) {};
-    ~CommI2C() override = default;
+    CommI2C(const uint32_t I2C_FREQUENCY = 400000U, const int I2C_SDA_PIN = 11, const int I2C_SCL_PIN = 12) : SDA_PIN(I2C_SDA_PIN), SCL_PIN(I2C_SCL_PIN), FREQUENCY(I2C_FREQUENCY) {};
+    ~CommI2C(void) = default;
 
-    enum StatusCode initialize() override;
-    enum StatusCode initialize(const uint32_t frequency);
+    enum StatusCode initialize(void);
 };
 
 #endif /* SRC_COMM_I2C_H_ */

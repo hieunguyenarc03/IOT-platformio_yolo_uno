@@ -1,11 +1,5 @@
 #include "connection.h"
 
-ConnectionWifi::ConnectionWifi(const char *WIFI_SSID, const char *WIFI_PASSWORD)
-{
-    this->SSID = WIFI_SSID;
-    this->PASSWORD = WIFI_PASSWORD;
-}
-
 enum StatusCode ConnectionWifi::initialize()
 {
     if (this->SSID == "" || this->PASSWORD == "")
@@ -16,7 +10,7 @@ enum StatusCode ConnectionWifi::initialize()
 
     Serial.print("Wifi SSID: ");
     Serial.println(this->SSID.c_str());
-    Serial.print("Wifi PASSWORD: ");
+    Serial.print(" Wifi PASSWORD: ");
     Serial.println(this->PASSWORD.c_str());
 
     Serial.println("Connecting to AP ...");

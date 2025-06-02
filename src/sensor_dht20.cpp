@@ -18,8 +18,15 @@ enum StatusCode SensorDHT20::readData()
 {
     if (dht20.read() == DHT20_OK)
     {
-        this->dht20_data.temperature = dht20.getTemperature();
-        this->dht20_data.humidity = dht20.getHumidity();
+        this->data.temperature = dht20.getTemperature();
+        this->data.humidity = dht20.getHumidity();
+
+        Serial.println("[OK] DHT20 read succeeded");
+        Serial.print("Temperature: ");
+        Serial.println(this->data.temperature, 2);
+        Serial.print("Humidity: ");
+        Serial.println(this->data.humidity, 2);
+
         return STATUS_OK;
     }
 
@@ -28,5 +35,5 @@ enum StatusCode SensorDHT20::readData()
 
 const struct SensorDHT20::DHT20Data *SensorDHT20::getDHT20Data() const
 {
-    return &this->dht20_data;
+    return &this->data;
 }
