@@ -2,7 +2,7 @@
 
 enum StatusCode ConnectionWifi::initialize()
 {
-    if (this->SSID == "" || this->PASSWORD == "")
+    if (this->SSID == "")
     {
         Serial.println("[ERR] SSID or PASSWORD is invalid");
         return STATUS_ERROR;
