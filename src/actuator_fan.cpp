@@ -10,22 +10,6 @@ enum StatusCode ActuatorFan::initialize()
     return STATUS_OK;
 }
 
-void ActuatorFan::turnOn()
-{
-    this->power = 100;
-    uint8_t duty_cycle = round(this->power * (255 / 100));
-
-    ledcWrite(this->PWM_CHANNEL, duty_cycle);
-}
-
-void ActuatorFan::turnOff()
-{
-    this->power = 0;
-    uint8_t duty_cycle = round(this->power * (255 / 100));
-
-    ledcWrite(this->PWM_CHANNEL, duty_cycle);
-}
-
 void ActuatorFan::setPower(uint8_t fan_power)
 {
     // exeption handling
@@ -36,6 +20,16 @@ void ActuatorFan::setPower(uint8_t fan_power)
     uint8_t duty_cycle = round(this->power * (255 / 100));
 
     ledcWrite(this->PWM_CHANNEL, duty_cycle);
+}
+
+void ActuatorFan::turnOn()
+{
+    this->setPower(100);
+}
+
+void ActuatorFan::turnOff()
+{
+    this->setPower(0);
 }
 
 uint8_t ActuatorFan::getPower()

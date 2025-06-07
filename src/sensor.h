@@ -22,7 +22,7 @@ private:
         float humidity;
     };
 
-    static constexpr uint16_t I2C_ADDRESS = 0x38;
+    inline static constexpr uint16_t I2C_ADDRESS = 0x38;
 
     DHT20 dht20;
     DHT20Data data;

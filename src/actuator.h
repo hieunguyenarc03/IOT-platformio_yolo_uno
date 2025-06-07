@@ -18,8 +18,8 @@ class ActuatorFan : public Actuator
 private:
     const uint8_t PIN;
     const uint8_t PWM_CHANNEL;
-    const uint8_t PWM_RESOLUTION = 8;
-    const uint32_t PWM_FREQUENCY = 25000U;
+    inline static constexpr uint8_t PWM_RESOLUTION = 8;
+    inline static constexpr uint32_t PWM_FREQUENCY = 25000U;
 
     uint8_t power;
 

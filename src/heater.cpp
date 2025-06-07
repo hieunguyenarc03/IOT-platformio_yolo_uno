@@ -10,22 +10,6 @@ void Heater::initialize()
     return;
 }
 
-void Heater::turnOn()
-{
-    this->power = 100;
-    uint8_t duty_cycle = round(this->power * (255 / 100));
-
-    ledcWrite(this->PWM_CHANNEL, duty_cycle);
-}
-
-void Heater::turnOff()
-{
-    this->power = 0;
-    uint8_t duty_cycle = round(this->power * (255 / 100));
-
-    ledcWrite(this->PWM_CHANNEL, duty_cycle);
-}
-
 void Heater::setPower(uint8_t heater_power)
 {
     // exeption handling
@@ -36,6 +20,16 @@ void Heater::setPower(uint8_t heater_power)
     uint8_t duty_cycle = round(this->power * (255 / 100));
 
     ledcWrite(this->PWM_CHANNEL, duty_cycle);
+}
+
+void Heater::turnOn()
+{
+    this->setPower(100);
+}
+
+void Heater::turnOff()
+{
+    this->setPower(0);
 }
 
 uint8_t Heater::getPower()

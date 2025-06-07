@@ -21,7 +21,7 @@ enum StatusCode CoreIoT::initialize()
 
 enum StatusCode CoreIoT::publishTelemetry(const char *json_payload)
 {
-    if (tb.Send_Json_String(this->TELEMETRY_TOPIC, json_payload))
+    if (this->tb.Send_Json_String(this->TELEMETRY_TOPIC, json_payload))
     {
         return STATUS_OK;
     }
@@ -30,7 +30,7 @@ enum StatusCode CoreIoT::publishTelemetry(const char *json_payload)
 
 enum StatusCode CoreIoT::publishAttribute(const char *json_payload)
 {
-    if (tb.Send_Json_String(this->ATTRIBUTES_PUBLISH_TOPIC, json_payload))
+    if (this->tb.Send_Json_String(this->ATTRIBUTES_PUBLISH_TOPIC, json_payload))
     {
         return STATUS_OK;
     }
